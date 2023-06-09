@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<style>
+.square {
+        width: 120px;
+        height: 130px;
+        background: #98d2fd;
+        }
+    
+</style>
+<head>
+    <title>Mi primera Web</title>
+</head>
+<body>
+   
+    <h1>Calculadora</h1>
+    
+    <div class="square">
+        <input id="txtValor" type="text"size="10" value = "0"/>
+        <input id="btn1" onclick="onclickButton(value)"  type="button" value= 1 >
+        <input id="btn2" onclick="onclickButton(value)" type="button" value= 2>
+        <input id="btn3" onclick="onclickButton(value)" type="button" value= "3">
+        <input id="btnSuma" onclick="onclickButton(value)" type="button" value= "+">
+        <input id="btn4" onclick="onclickButton(value)" type="button" value= "4">
+        <input id="btn5" onclick="onclickButton(value)" type="button" value= "5">
+        <input id="btn6" onclick="onclickButton(value)" type="button" value= "6">
+        <input id="btnResta" onclick="onclickButton(value)" type="button" value= "-">
+        <input id="btn7" onclick="onclickButton(value)" type="button" value= "7">
+        <input id="btn8" onclick="onclickButton(value)" type="button" value= "8">
+        <input id="btn9" onclick="onclickButton(value)" type="button" value= "9">
+        <input id="btnDivision" onclick="onclickButton(value)" type="button" value= "/">
+        <input id="btn0" onclick="onclickButton(value)" type="button" value= "0">
+        <input id="btnMultiplicacion" onclick="onclickButton(value)" type="button" value= "*">
+        <input id="btnResultado" onclick="onclickResultado(value)" type="button" value= "=">
+        <input id="btnClean" onclick="onclickClean(value)" type="button" value= "C">
+        
+
+    </div>
+
+    <script>
+        let primerNumero = 0
+        let segundoNumero = 0
+        let tipoDeOperacion = 0
+
+        
+        
+        function onclickButton (elementoRecibido) {
+           if (elementoRecibido !== '+' && elementoRecibido !== '-' && elementoRecibido !== '/' && elementoRecibido !== '*' ){
+                //Aqui solo resetea el valor 0 del div
+                if (document.getElementById("txtValor").value === '0'){
+                    document.getElementById("txtValor").value = elementoRecibido;             
+                    //El elemento Recibido ya viene con un valor y empieza a concatenar
+                }else{
+                    let currentValue = document.getElementById("txtValor").value;
+                    document.getElementById("txtValor").value = currentValue.concat(elementoRecibido);
+                }
+            
+          
+            }else { //si se recibe un signo, se guarda los valores concatenados como primer Numero
+                primerNumero = document.getElementById('txtValor').value
+                //tambien se guardo el signo que se recibe para luego ejecutar la operacion correspondiente
+                tipoDeOperacion = elementoRecibido
+                document.getElementById("txtValor").value = 0;
+            }
+        }
+
+        // se recibe el segundo numero y se realiza la operacion
+        function onclickResultado (elementoRecibido) {
+            segundoNumero = document.getElementById("txtValor").value
+            document.getElementById("txtValor").value = 0
+
+            if (tipoDeOperacion === "+") {
+                document.getElementById("txtValor").value = Number(primerNumero) + Number(segundoNumero);
+            } else if (tipoDeOperacion === "-") {
+                document.getElementById("txtValor").value = Number(primerNumero) - Number(segundoNumero);
+            } else if (tipoDeOperacion === "*"){
+                document.getElementById("txtValor").value = Number(primerNumero) * Number(segundoNumero);
+            } else if (tipoDeOperacion === "/") {
+                document.getElementById("txtValor").value = Number(primerNumero) / Number(segundoNumero);
+            }
+        
+        }
+
+        function onclickClean (elementoRecibido){
+            document.getElementById("txtValor").value = 0;
+
+        }
+
+       
+        
+
+
+
+
+
+    </script>
+    
+    
+
+    <p>
+        Este texto es solo para poder <span style="color: blue">hacer un ejemplo</span> y 
+        <br>mostrar la
+        etiqueta de span!
+
+    </p>
+    <!--este texto es un comentario y no va a
+    aparecer en el explorador -->
+    <a target="_blank" href="https://www.google.com">Ir a google</a>
+    <!--img src="img/Snow Patrol Song.jpeg" height="400" width="400"/-->   
+    
+</body>
+</html>
